@@ -18,8 +18,11 @@ function comments(state = [], action) {
             }
             , ...state];
         case REMOVE_COMMENT:
+            console.log(state.filter(comment => comment.id !== action.id));
+            console.log(action.id);
             return [{
-                comments: state.comments.filter(comment => comment.id !== action.id)
+                
+                comments: state.filter(comment => comment.id !== action.id)
             }];
         case EDIT_COMMENT:
             return [{
@@ -29,19 +32,19 @@ function comments(state = [], action) {
                 }
                 , ...state];
         case THUMB_UP_COMMENT:
-            return [{
-                    id: action.id,
-                    text: state.comments.find(comment => comment.id === action.id).text,
-                    votes: action.amount++
+            return state.map(comment => {
+                if(comment.id === action.id) {
+                    return {...comment, votes: comment.votes + 1}
                 }
-                , ...state];
+            return comment;
+            });
         case THUMB_DOWN_COMMENT:
-            return [{
-                    id: action.id,
-                    text: state.comments.find(comment => comment.id === action.id).text,
-                    votes: action.amount--
+            return state.map(comment => {
+                if(comment.id === action.id) {
+                    return {...comment, votes: comment.votes - 1}
                 }
-                , ...state];
+            return comment;
+            });
         default:
             return state;
     }

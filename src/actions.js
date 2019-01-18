@@ -29,19 +29,17 @@ export function editComment(id, text) {
     }
 }
 
-export function upComment(id, amount) {
+export function thumbUpComment(id) {
     return {
-        type: THUMB_UP_COMMENT,
-        id,
-        amount
+      type: THUMB_UP_COMMENT,
+      id
     }
-}
+  }
 
-export function downComment(id, amount) {
+export function thumbDownComment(id) {
     return {
         type: THUMB_DOWN_COMMENT,
-        id,
-        amount
+        id
     }
 }
 
