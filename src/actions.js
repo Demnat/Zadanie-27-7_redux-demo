@@ -6,13 +6,7 @@ export const EDIT_COMMENT = 'EDIT_COMMENT';
 export const THUMB_UP_COMMENT = 'THUMB_UP_COMMENT';
 export const THUMB_DOWN_COMMENT = 'THUMB_DOWN_COMMENT';
 
-// { 
-//     type: ADD_COMMENT;
-//     id: uuid.v4();
-//     text: 'tekst komentarza'
-// }
-
-function addComment(text) {
+export default function addComment(text) {
     return {
         type: ADD_COMMENT,
         id: uuid.v4(),
@@ -20,30 +14,14 @@ function addComment(text) {
     }
 }
 
-export default addComment;
-// const boundAddComment = text => dispatch(addComment(text));
-
-// {
-//     type: REMOVE_COMMENT;
-//     id: 20 
-// }
-
-function removeComment(id) {
+export function removeComment(id) {
     return {
         type: REMOVE_COMMENT,
         id
     }
 }
 
-// const boundRemoveComment = id => dispatch(removeComment(id));
-
-// {
-//     type: EDIT_COMMENT;
-//     id: 20;
-//     text: 'wyedytowany tekst komentarza'
-// }
-
-function editComment(id, text) {
+export function editComment(id, text) {
     return {
         type: EDIT_COMMENT,
         id,
@@ -51,15 +29,7 @@ function editComment(id, text) {
     }
 }
 
-// const boundEditComment = (id, text) => dispatch(editComment(id,text));
-
-// {
-//     type: THUMB_UP_COMMENT;
-//     id: 20;
-//     amount: 3
-// }
-
-function upComment(id, amount) {
+export function upComment(id, amount) {
     return {
         type: THUMB_UP_COMMENT,
         id,
@@ -67,16 +37,7 @@ function upComment(id, amount) {
     }
 }
 
-// const boundUpComment = (id, amount) => dispatch(upComment(id,amount));
-
-
-// {
-//     type: THUMB_DOWN_COMMENT;
-//     id: 25;
-//     amount: 0
-// }
-
-function downComment(id, amount) {
+export function downComment(id, amount) {
     return {
         type: THUMB_DOWN_COMMENT,
         id,
@@ -84,5 +45,4 @@ function downComment(id, amount) {
     }
 }
 
-// const boundDownComment = (id, amount) => dispatch(downComment(id,amount));
 

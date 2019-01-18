@@ -4,9 +4,9 @@ import {EDIT_COMMENT} from './actions';
 import {THUMB_UP_COMMENT} from './actions';
 import {THUMB_DOWN_COMMENT} from './actions';
 
-const initialState = {
-    comments: []
-}
+// const initialState = {
+//     comments: []
+// }
 
 function comments(state = [], action) {
     switch(action.type) {
@@ -16,7 +16,7 @@ function comments(state = [], action) {
                 text: action.text,
                 votes: 0
             }
-            , ...state.comments];
+            , ...state];
         case REMOVE_COMMENT:
             return [{
                 comments: state.comments.filter(comment => comment.id !== action.id)
@@ -25,23 +25,23 @@ function comments(state = [], action) {
             return [{
                     id: action.id,
                     text: action.text,
-                    // votes: 0  // co tutaj? w akcji edit nie podaję liczby votes skąd wziać
+                    votes: state.comments.find(comment => comment.id === action.id).votes
                 }
-                , ...state.comments];
+                , ...state];
         case THUMB_UP_COMMENT:
             return [{
                     id: action.id,
-                    // text: action.text,
-                    votes: action.amount
+                    text: state.comments.find(comment => comment.id === action.id).text,
+                    votes: action.amount++
                 }
-                , ...state.comments];
+                , ...state];
         case THUMB_DOWN_COMMENT:
             return [{
                     id: action.id,
-                    // text: action.text,
-                    votes: action.amount
+                    text: state.comments.find(comment => comment.id === action.id).text,
+                    votes: action.amount--
                 }
-                , ...state.comments];
+                , ...state];
         default:
             return state;
     }
