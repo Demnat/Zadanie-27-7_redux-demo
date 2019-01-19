@@ -17,13 +17,9 @@ function comments(state = [], action) {
                 votes: 0
             }
             , ...state];
+            
         case REMOVE_COMMENT:
-            console.log(state.filter(comment => comment.id !== action.id));
-            console.log(action.id);
-            return [{
-                
-                comments: state.filter(comment => comment.id !== action.id)
-            }];
+            return state.filter(comment => comment.id !== action.id);
         case EDIT_COMMENT:
             return [{
                     id: action.id,
